@@ -9,7 +9,7 @@
 namespace DataLayer;
 
 
-interface DataLayer {
+interface UserDataLayer {
     public function getUser($id);
     public function getUserForUsernameAndPassword($username, $password);
 }

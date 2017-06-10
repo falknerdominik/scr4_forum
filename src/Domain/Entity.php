@@ -5,7 +5,7 @@ class Entity {
     private $id;
 
     /**
-     * @return id
+     * @return integer id
      */
     public function getId() {
         return $this->id;
@@ -13,7 +13,7 @@ class Entity {
 
     /**
      * Entity constructor.
-     * @param $id of the entity
+     * @param $id integer of the entity
      */
     protected function __construct($id) {
         $this->id = $id;

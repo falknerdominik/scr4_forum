@@ -10,7 +10,7 @@ final class AuthenticationManager {
     const SESSION_USER_ID = 'userId';
 
     public static function authenticate($username, $password) {
-        $user = DataLayerFactory::getDataLayer()->getUserForUsernameAndPassword($username, $password);
+        $user = DataLayerFactory::getUserDataLayer()->getUserForUsernameAndPassword($username, $password);
         if($user != null) {
             Session::storeValue(self::SESSION_USER_ID, $user->getId());
             return true;
@@ -28,6 +28,6 @@ final class AuthenticationManager {
     }
 
     public static function getAuthenticatedUser() {
-        return self::isAuthenticated() ? DataLayerFactory::getDataLayer()->getUser(Session::getValue(self::SESSION_USER_ID)) : null;
+        return self::isAuthenticated() ? DataLayerFactory::getUserDataLayer()->getUser(Session::getValue(self::SESSION_USER_ID)) : null;
     }
 }

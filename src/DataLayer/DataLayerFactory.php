@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Dominik
- * Date: 5/5/2017
- * Time: 3:56 PM
- */
 
 namespace DataLayer;
 
@@ -12,8 +6,13 @@ namespace DataLayer;
 final class DataLayerFactory {
     private function __construct() { }
 
-    public static function getDataLayer() {
+    public static function getUserDataLayer() {
         //TODO switch to another implementation here in the future
-        return new MockDataLayer();
+        return new MockUserDataLayer();
+    }
+
+    public static function getDiscussionDataLayer() {
+        //TODO switch to another implementation here in the future
+        return new MockDiscussionDataLayer();
     }
 }

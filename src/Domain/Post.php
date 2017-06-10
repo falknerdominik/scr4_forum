@@ -5,12 +5,14 @@ class Post extends Entity {
     private $creator;
     private $creation_date;
     private $text;
+    private $discussionId;
 
-    public function __construct($id, $creator, $creation_date, $text) {
+    public function __construct($id, $discussionId, $creator, $creation_date, $text) {
         parent::__construct($id);
         $this->creator = $creator;
         $this->creation_date = $creation_date;
         $this->text = $text;
+        $this->discussionId = $discussionId;
     }
 
     /**
@@ -59,6 +61,22 @@ class Post extends Entity {
     public function setText($text)
     {
         $this->text = $text;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDiscussionId()
+    {
+        return $this->discussionId;
+    }
+
+    /**
+     * @param mixed $discussionId
+     */
+    public function setDiscussionId($discussionId)
+    {
+        $this->discussionId = $discussionId;
     }
 
 }
