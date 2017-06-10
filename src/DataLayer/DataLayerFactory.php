@@ -14,6 +14,6 @@ final class DataLayerFactory {
 
     public static function getDataLayer() {
         //TODO switch to another implementation here in the future
-        return new DBDataLayer('localhost', 'root', '', 'bookshop');
+        return new MockDataLayer();
     }
 }

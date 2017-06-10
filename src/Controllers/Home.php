@@ -1,7 +1,6 @@
 <?php
 namespace Controllers;
 
-use \MVC\Controller;
 use \BusinessLogic\AuthenticationManager;
 
 class Home extends Controller {

@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use MVC\ViewRenderer;
 use BusinessLogic\AuthenticationManager;
 
 class Controller {
