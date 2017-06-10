@@ -2,6 +2,8 @@
 namespace DataLayer;
 
 
+use Domain\User;
+
 class MockDataLayer implements DataLayer {
     private $__users;
 

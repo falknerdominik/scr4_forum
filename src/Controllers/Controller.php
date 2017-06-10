@@ -2,12 +2,13 @@
 
 namespace Controllers;
 
+use BusinessLogic\Context;
+use MVC\MVC;
 use MVC\ViewRenderer;
-use BusinessLogic\AuthenticationManager;
 
 class Controller {
     /**
-     * @param $id of the param
+     * @param $id integer of the param
      * @return bool if param is set
      */
     public final function hasParam($id){
@@ -17,14 +18,14 @@ class Controller {
     /**
      * @param $id
      * @param null $defaultValue
-     * @return default value if param not set or param if it is
+     * @return string value if param not set or param if it is
      */
     public final function getParam($id, $defaultValue = null) {
         return isset($_REQUEST[$id]) ? $_REQUEST[$id] : $defaultValue;
     }
 
     /**
-     * @param $view path to viewfile
+     * @param $view string path to viewfile
      * @param array $model data array used to fill model
      */
     public final function renderView($view, $model = array()) {

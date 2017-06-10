@@ -1,10 +1,13 @@
 <?php
 namespace MVC;
 
+use BusinessLogic\Context;
+
 class ViewRenderer {
-    private function __construct() { }
+    public static $context;
 
     public static function renderView($view, $model) {
+        self::$context = Context::getInstance();
         require(MVC::getViewPath() . "/$view.inc");
     }
 
