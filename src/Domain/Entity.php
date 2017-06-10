@@ -15,7 +15,7 @@ class Entity {
      * Entity constructor.
      * @param $id of the entity
      */
-    public function __construct($id) {
+    protected function __construct($id) {
         $this->id = $id;
     }
 
