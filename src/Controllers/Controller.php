@@ -32,17 +32,30 @@ class Controller {
         ViewRenderer::renderView($view, $model);
     }
 
+    /**
+     * @param $url string to redirect to
+     */
     public final function redirecttoUrl($url) {
         header("Location: $url");
     }
 
+    /**
+     * @param $action to execute
+     * @param $controller to redirect to
+     * @param null $params (GET) to add to link
+     * @return string containing the action link
+     */
     public final function buildActionLink($action, $controller, $params = null) {
         return MVC::buildActionLink($action, $controller, $params);
     }
 
+    /**
+     * redirects to a given action and controller
+     * @param $action to execute
+     * @param $controller to redirect to
+     * @param null $params (GET) to set
+     */
     public final function redirect($action, $controller, $params = null) {
         $this->redirecttoUrl($this->buildActionLink($action, $controller, $params));
     }
-
-    // TODO more helper functions here later
 }
