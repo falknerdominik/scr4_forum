@@ -2,43 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- META viewport for mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SCR4 Book Shop</title>
 
-<!--    <link href="css/bootstrap.min.css" rel="stylesheet">-->
-<!--    <link href="css/bootstrap-theme.min.css" rel="stylesheet">-->
-<!--    <link href="css/BookShop.css" rel="stylesheet">-->
+    <!--  base CSS for purecss.io -->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    <!--  base responsive gird system CSS for purecss.io -->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+
+    <link rel="stylesheet" href="css/side-menu.css">
 
 </head>
 <body>
-<!--<nav class="navbar navbar-inverse navbar-fixed-top">-->
-<!--    <div class="container">-->
-<!--        <div class="navbar-header">-->
-<!--            <button type="button" class="navbar-toggle collapsed"-->
-<!--                    data-toggle="collapse" data-target="#navbar"-->
-<!--                    aria-expanded="false" aria-controls="navbar"-->
-<!--            >-->
-<!--                <span class="sr-only">Toggle navigation</span>-->
-<!--                <span class="icon-bar"></span>-->
-<!--                <span class="icon-bar"></span>-->
-<!--                <span class="icon-bar"></span>-->
-<!--            </button>-->
-<!--            <a class="navbar-brand" href="?">SCR4 Book Shop</a>-->
-<!--        </div>-->
-<!--        <div id="navbar" class="collapse navbar-collapse">-->
-<!--            <ul class="nav navbar-nav">-->
-<!--                <li>--><?php //self::actionLink('Home', 'Index', 'Home'); ?><!--</li>-->
-<!--                <li>--><?php //self::actionLink('List', 'Index', 'Books'); ?><!--</li>-->
-<!--                <li>--><?php //self::actionLink('Search', 'Search', 'Books'); ?><!--</li>-->
-<!--                <li>--><?php //self::actionLink('Checkout', 'Create', 'Order'); ?><!--</li>-->
-<!--            </ul>-->
-<!--            <div class="navbar-right">-->
-<!--                --><?php //self::renderView('partials/user', $model['user']);?>
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</nav>-->
-<!---->
+<!--TODO: Error handling-->
 <?php //if(isset($model['errors'])) {
 //    self::renderView('partials/errors', $model['errors']);
 //} ?>
+<section id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+
+    <nav id="menu">
+        <div class="pure-menu">
+            <!--            <a class="pure-menu-heading" href="#">Forum</a>-->
+            <?php self::actionLink('Forum', 'Index', 'Home', null, 'pure-menu-heading'); ?>
+
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Home</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">About</a></li>
+
+                <li class="pure-menu-item" class="menu-item-divided pure-menu-selected">
+                    <a href="#" class="pure-menu-link">Services</a>
+                </li>
+
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
