@@ -17,8 +17,8 @@ class MockDiscussionDataLayer implements DiscussionDataLayer {
 
         $this->__discussions = array(
             new Discussion(++$top_discussions, "Dynamic vs. static typed languages", "2017-06-12", 1, 10, 10),
-            new Discussion(++$top_discussions, "Whats your setup for programming PHP", "2017-06-12", 9, 15, 5),
-            new Discussion(++$top_discussions, "Whats your setup for programming PHP", "2017-06-12", 4, 17, 2)
+            new Discussion(++$top_discussions, "Whats your setup for programming PHP", "2017-05-12", 9, 15, 5),
+            new Discussion(++$top_discussions, "Anyone using PHPStrom or Atom?", "2017-05-25", 4, 17, 2)
         );
 
         $this->__posts = array(
