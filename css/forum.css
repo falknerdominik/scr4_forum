@@ -1,8 +1,19 @@
+/*
+ * General Styling
+ */
 a {
     color: black;
     text-decoration: none;
 }
 
+/*
+ * Extra Menu Styling
+ */
+#menu .selected { background-color: #fff; }
+
+/*
+ * Styling of discussion page
+ */
 .discussions {
   text-align: center;
 }

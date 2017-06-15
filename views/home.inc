@@ -2,31 +2,21 @@
 
 <main id="main">
     <div class="header">
-        <h1>Discussions</h1>
+        <h1>Home</h1>
     </div>
 
     <div class="content">
-        <p></p>
-        <!-- discussions grid -->
-        <section class="discussions">
-            <?php self::renderView('partials/discussionOverviewRow', array(
-                    'discussions' => $model['discussions'],
-                    'cssGridClass' => 'discussion-grid',
-                    'cssColumnClass' => 'discussion-row'
-            )); ?>
-        </section>
+        <h2 class="content-subhead">Welcome to <b>the Forum</b></h2>
+        <p>
+            This is a forum site for everyone. You can read all the discussions and if you register you can even create new ones.
+        </p>
+
+        <h2 class="content-subhead">FH HAGENBERG</h2>
+        <img class="pure-img-responsive" src="img/hagenberg.jpg" alt="FH Hagenberg Logo">
+        <p>
+            This forum was mainly created as an exercise for our SCR4 lecture. It is a simle forum for any discussion. Everyone can read the discussions but only somone who is logged in can create a new one.
+        </p>
     </div>
 </main>
-
-
-<!--<div class="container">-->
-<!--    <h1>Home</h1>-->
-<!--    <p>--><?php //self::htmlOut($model['message']); ?><!--</p>-->
-<!--    --><?php //if(self::$context->isUserLoggedIn()): ?>
-<!--        <h1>Logged In!</h1>-->
-<!--    --><?php //else: ?>
-<!--        <h1>Logged out!</h1>-->
-<!--    --><?php //endif; ?>
-<!--</div>-->
 
 <?php self::renderView('partials/footer', $model) ?>

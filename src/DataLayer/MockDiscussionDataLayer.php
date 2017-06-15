@@ -70,4 +70,19 @@ class MockDiscussionDataLayer implements DiscussionDataLayer {
     public function createPost($discussionId, $creator, $creation_date, $text) {
         return rand();
     }
+
+    public function getPaginationArray($nrOfItemsPerPage, $currentPage, $wantedAdjacentPages) {
+        // get all items within the range
+        $result = range(1, ceil(sizeof($this->__discussions) / $nrOfItemsPerPage));
+
+        if (isset($currentPage, $wantedAdjacentPages) === true)
+        {
+            if (($adjacents = floor($wantedAdjacentPages / 2) * 2 + 1) >= 1)
+            {
+                $result = array_slice($result, max(0, min(count($result) - $adjacents, intval($currentPage) - ceil($adjacents / 2))), $adjacents);
+            }
+        }
+
+        return $result;
+    }
 }

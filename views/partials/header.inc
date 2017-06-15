@@ -31,15 +31,23 @@
             <?php self::actionLink('Forum', 'Index', 'Home', null, 'pure-menu-heading'); ?>
 
             <ul class="pure-menu-list">
-                <?php self::actionLink('Discussions', 'Index', 'Home', null, 'pure-menu-link') ?>
+                <li
+                    class='pure-menu-item <?php self::$context->isCurrentController("Discussion") ? self::htmlOut('selected') : self::htmlOut(''); ?> '
+                >
+                    <?php self::actionLink('Discussions', 'Index', 'Discussion', null, 'pure-menu-link') ?>
+                </li>
 
                 <!-- check if user is logged in and generate Login / Profile link -->
                 <?php if(self::$context->isUserLoggedIn()): ?>
-                <li class="pure-menu-item" class="menu-item-divided pure-menu-selected">
+                <li
+                    class='pure-menu-item <?php self::$context->isCurrentController("Profile") ? self::htmlOut('selected') : self::htmlOut(''); ?> '
+                >
                     <?php self::actionLink('Your Profile', 'Index', 'Profile', null, 'pure-menu-link') ?>
                 </li>
                 <?php else: ?>
-                <li class="pure-menu-item" class="menu-item-divided pure-menu-selected">
+                <li
+                    class='pure-menu-item <?php self::$context->isCurrentController("Login") ? self::htmlOut('selected') : self::htmlOut(''); ?> '
+                >
                     <?php self::actionLink('Login', 'Index', 'Login', null, 'pure-menu-link') ?>
                 </li>
                 <?php endif; ?>

@@ -25,7 +25,8 @@ class Context {
         // add current user
         // TODO: referer
         self::$context = new \Domain\Context(
-            AuthenticationManager::getAuthenticatedUser()
+            AuthenticationManager::getAuthenticatedUser(),
+           isset($_REQUEST['c']) ? $_REQUEST['c'] : null
         );
     }
 }

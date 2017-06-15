@@ -4,7 +4,7 @@ namespace Controllers;
 use \BusinessLogic\AuthenticationManager;
 use DataLayer\DataLayerFactory;
 
-class Home extends Controller {
+class Discussion extends Controller {
     const PARAM_PAGE = 'pnr';
 
     const ITEMS_PER_PAGE = 10;
@@ -17,7 +17,7 @@ class Home extends Controller {
         }
 
         /** @noinspection PhpVoidFunctionResultUsedInspection */
-        return $this->renderView('home', array(
+        return $this->renderView('discussion', array(
            'user' => AuthenticationManager::getAuthenticatedUser(),
            'discussions' => DataLayerFactory::getDiscussionDataLayer()->getDiscussions(),
            'currentPage' => $currentPage,

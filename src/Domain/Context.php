@@ -3,9 +3,11 @@ namespace Domain;
 
 class Context {
     private $user;
+    private $currentController;
 
-    public function __construct($user) {
+    public function __construct($user, $currentController) {
         $this->user = $user;
+        $this->currentController = $currentController;
     }
 
     public function isUserLoggedIn() {
@@ -17,5 +19,9 @@ class Context {
      */
     public function getUser() {
         return $this->user;
+    }
+
+    public function isCurrentController($controller) {
+        return $this->currentController === $controller;
     }
 }
