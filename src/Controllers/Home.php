@@ -8,8 +8,7 @@ class Home extends Controller {
         // return ends the action when rendering a view -> only cosmetic
         /** @noinspection PhpVoidFunctionResultUsedInspection */
         return $this->renderView('home', array(
-           'user' => AuthenticationManager::getAuthenticatedUser(),
-           'message' => 'Hello Home!'
+           'user' => AuthenticationManager::getAuthenticatedUser()
         ));
     }
 

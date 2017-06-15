@@ -1,6 +1,6 @@
 <?php self::renderView('partials/header', $model) ?>
 
-<main>
+<main id="main">
     <div class="header">
         <h1>Discussions</h1>
     </div>

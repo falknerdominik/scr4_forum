@@ -1,0 +1,10 @@
+.info, .success, .warning, .error {
+    margin: 10px 0px;
+    padding:12px;
+}
+
+.error {
+    color: black;
+    background-color: #FFBABA;
+}
+

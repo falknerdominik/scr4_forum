@@ -11,14 +11,12 @@
     <!--  base responsive gird system CSS for purecss.io -->
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
 
+    <!-- custom css -->
     <link rel="stylesheet" href="css/side-menu.css">
+    <link rel="stylesheet" href="css/notification.css">
 
 </head>
 <body>
-<!--TODO: Error handling-->
-<?php //if(isset($model['errors'])) {
-//    self::renderView('partials/errors', $model['errors']);
-//} ?>
 <section id="layout">
     <!-- Menu toggle -->
     <a href="#menu" id="menuLink" class="menu-link">
@@ -50,3 +48,7 @@
         </div>
     </nav>
 
+
+    <?php if(isset($model['errors'])) {
+        self::renderView('partials/errors', $model['errors']);
+    } ?>
