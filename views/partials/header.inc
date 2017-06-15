@@ -32,12 +32,18 @@
             <?php self::actionLink('Forum', 'Index', 'Home', null, 'pure-menu-heading'); ?>
 
             <ul class="pure-menu-list">
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Home</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">About</a></li>
+                <?php self::actionLink('Discussions', 'Index', 'Home', null, 'pure-menu-link') ?>
 
+                <!-- check if user is logged in and generate Login / Profile link -->
+                <?php if(self::$context->isUserLoggedIn()): ?>
                 <li class="pure-menu-item" class="menu-item-divided pure-menu-selected">
-                    <a href="#" class="pure-menu-link">Services</a>
+                    <?php self::actionLink('Your Profile', 'Index', 'Profile', null, 'pure-menu-link') ?>
                 </li>
+                <?php else: ?>
+                <li class="pure-menu-item" class="menu-item-divided pure-menu-selected">
+                    <?php self::actionLink('Login', 'Index', 'Login', null, 'pure-menu-link') ?>
+                </li>
+                <?php endif; ?>
 
                 <li class="pure-menu-item"><a href="#" class="pure-menu-link">Contact</a></li>
             </ul>
