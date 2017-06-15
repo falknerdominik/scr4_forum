@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
 
     <!-- custom css -->
+    <link rel="stylesheet" href="css/forum.css">
     <link rel="stylesheet" href="css/side-menu.css">
     <link rel="stylesheet" href="css/notification.css">
 
