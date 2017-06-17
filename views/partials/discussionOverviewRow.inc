@@ -3,7 +3,7 @@
     <div class='pure-u-1 pure-u-md-2-3 '>
         <?php self::actionLink($discussion->getName(), 'Index', 'Discussion', array(
                 'did' => $discussion->getId()
-            ))
+            ));
         ?>
     </div>
     <div class='pure-u-1  pure-u-md-1-3 '>

@@ -7,7 +7,7 @@ use DataLayer\DataLayerFactory;
 class Discussion extends Controller {
     const PARAM_PAGE = 'pnr';
 
-    const ITEMS_PER_PAGE = 10;
+    const ITEMS_PER_PAGE = 1;
     const SHOWN_ADJACENT_PAGES = 5;
 
     public function GET_Index() {
@@ -18,8 +18,7 @@ class Discussion extends Controller {
 
         /** @noinspection PhpVoidFunctionResultUsedInspection */
         return $this->renderView('discussion', array(
-           'user' => AuthenticationManager::getAuthenticatedUser(),
-           'discussions' => DataLayerFactory::getDiscussionDataLayer()->getDiscussions(),
+           'discussions' => DataLayerFactory::getDiscussionDataLayer()->getDiscussionPage($currentPage, self::ITEMS_PER_PAGE),
            'currentPage' => $currentPage,
            'paginationArray' => DataLayerFactory::getDiscussionDataLayer()->getPaginationArray(self::ITEMS_PER_PAGE, $currentPage, self::SHOWN_ADJACENT_PAGES)
         ));

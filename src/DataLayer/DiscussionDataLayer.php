@@ -5,6 +5,8 @@ namespace DataLayer;
 
 interface DiscussionDataLayer {
     public function getDiscussions();
+    public function getDiscussionPage($page, $nrOfItemsPerPage);
+
     public function createDiscussion($name, $creation_date, $creator);
 
     public function getPostsForDiscussion($discussionId);

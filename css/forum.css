@@ -6,16 +6,38 @@ a {
     text-decoration: none;
 }
 
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /*
  * Extra Menu Styling
  */
 #menu .selected { background-color: #fff; }
 
 /*
+ * Extra form styling for inline navbar-forms (make buttons look like <li>
+ */
+.navbar-form button {
+    background-color: transparent;
+    color: #999;
+    width: 100%;
+    text-align: left;
+    padding: 0.6em 0 0.6em 0.6em;
+    border-radius: 0;
+}
+
+.navbar-form button:hover {
+    background-color: #333;
+}
+
+/*
  * Styling of discussion page
  */
 .discussions {
-  text-align: center;
+    text-align: center;
 }
 
 @media screen and (min-width: 48em) {
@@ -37,18 +59,35 @@ a {
     padding: 10px;
 }
 
+
 /*
- * Extra form styling for inline navbar-forms (make buttons look like <li>
+ * Pagination
  */
-.navbar-form button {
-    background-color: transparent;
-    color: #999;
-    width: 100%;
-    text-align: left;
-    padding: 0.6em 0 0.6em 0.6em;
-    border-radius: 0;
+
+.pagination {
+    display: flex;
+    flex-direction: row;
 }
 
-.navbar-form button:hover {
-    background-color: #333;
+.pagination li {
+    list-style-type: none;
+    background-color: darkslateblue;
+    border: 1px solid white;
+    padding: 0.3em;
+}
+
+.pagination li a {
+    color: white;
+}
+
+.error-404 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.smiley-404 {
+    margin-right: 1em;
+    font-size: 180%;
 }

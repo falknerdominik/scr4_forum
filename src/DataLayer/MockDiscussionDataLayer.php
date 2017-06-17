@@ -63,7 +63,7 @@ class MockDiscussionDataLayer implements DiscussionDataLayer {
 
     public function getPostsForCreator($creatorId) {
         return array_filter($this->__posts, function($post) use($creatorId){
-            return $discussion->getCreator() == $creatorId;
+            return $post->getCreator()->getId() == $creatorId;
         });
     }
 
@@ -84,5 +84,10 @@ class MockDiscussionDataLayer implements DiscussionDataLayer {
         }
 
         return $result;
+    }
+
+    public function getDiscussionPage($page, $nrOfItemsPerPage) {
+        $start = ($page - 1) * $nrOfItemsPerPage;
+        return array_slice($this->__discussions, $start, $nrOfItemsPerPage);
     }
 }

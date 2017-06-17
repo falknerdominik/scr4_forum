@@ -8,6 +8,7 @@
     <div class="content">
         <p></p>
         <!-- discussions grid -->
+        <?php if(sizeof($model['discussions']) > 0): ?>
         <section class="discussions">
             <?php self::renderView('partials/discussionOverviewRow', array(
                     'discussions' => $model['discussions'],
@@ -15,12 +16,19 @@
                     'cssColumnClass' => 'discussion-row'
             )); ?>
         </section>
-        <section class="pagination">
+        <section class="center">
             <?php self::renderView('partials/pagination', array(
                'currentPage' => $model['currentPage'],
                'paginationArray' => $model['paginationArray']
             )); ?>
         </section>
+        <?php else: ?>
+        <section class="center">
+            <?php self::renderView('partials/404', array(
+                'message' => 'Sadly no discussion was found'
+            )); ?>
+        </section>
+        <?php endif; ?>
     </div>
 </main>
 
