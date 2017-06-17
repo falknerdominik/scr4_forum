@@ -36,3 +36,19 @@ a {
 .discussion-grid {
     padding: 10px;
 }
+
+/*
+ * Extra form styling for inline navbar-forms (make buttons look like <li>
+ */
+.navbar-form button {
+    background-color: transparent;
+    color: #999;
+    width: 100%;
+    text-align: left;
+    padding: 0.6em 0 0.6em 0.6em;
+    border-radius: 0;
+}
+
+.navbar-form button:hover {
+    background-color: #333;
+}

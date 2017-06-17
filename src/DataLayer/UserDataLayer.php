@@ -12,4 +12,7 @@ namespace DataLayer;
 interface UserDataLayer {
     public function getUser($id);
     public function getUserForUsernameAndPassword($username, $password);
+
+    public function isUsernameTaken($username);
+    public function addUser($username, $password);
 }

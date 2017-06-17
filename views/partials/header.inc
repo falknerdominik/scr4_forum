@@ -42,13 +42,18 @@
                 <li
                     class='pure-menu-item <?php self::$context->isCurrentController("Profile") ? self::htmlOut('selected') : self::htmlOut(''); ?> '
                 >
-                    <?php self::actionLink('Your Profile', 'Index', 'Profile', null, 'pure-menu-link') ?>
+                    <?php self::actionLink('Your Profile', 'Profile', 'User', null, 'pure-menu-link') ?>
+                </li>
+                <li>
+                    <?php self::beginActionForm('LogOut', 'User', null, 'post', 'pure-form navbar-form'); ?>
+                    <button class="pure-button">Log out</button>
+                    <?php self::endactionForm(); ?>
                 </li>
                 <?php else: ?>
                 <li
                     class='pure-menu-item <?php self::$context->isCurrentController("Login") ? self::htmlOut('selected') : self::htmlOut(''); ?> '
                 >
-                    <?php self::actionLink('Login', 'Index', 'Login', null, 'pure-menu-link') ?>
+                    <?php self::actionLink('Login', 'LogIn', 'User', null, 'pure-menu-link') ?>
                 </li>
                 <?php endif; ?>
 

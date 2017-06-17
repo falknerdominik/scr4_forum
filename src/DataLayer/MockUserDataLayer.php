@@ -35,4 +35,16 @@ class MockUserDataLayer implements UserDataLayer {
         }
         return null;
     }
+
+    public function isUsernameTaken($username) {
+        $candidates = array_filter($this->__users, function($user) use($username) {
+           return $user->getUsername() === $username;
+        });
+
+        return sizeof($candidates) !== 0;
+    }
+
+    public function addUser($username, $password) {
+        // nothing to do
+    }
 }
