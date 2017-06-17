@@ -17,6 +17,9 @@ a {
  */
 #menu .selected { background-color: #fff; }
 
+/* get rid of border */
+#layout #menu .pure-menu ul { border-top: none; }
+
 /*
  * Extra form styling for inline navbar-forms (make buttons look like <li>
  */
