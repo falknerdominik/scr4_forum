@@ -108,6 +108,10 @@ a {
 /*
  * details for post site
  */
+.back-link {
+    color: #1f8dd6;
+}
+
 .button-warning {
     color: white;
     border-radius: 4px;
