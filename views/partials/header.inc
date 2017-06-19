@@ -51,7 +51,7 @@
                 </li>
                 <?php else: ?>
                 <li
-                    class='pure-menu-item <?php self::$context->isCurrentController("Login") ? self::htmlOut('selected') : self::htmlOut(''); ?> '
+                    class='pure-menu-item <?php self::$context->isCurrentController("User") ? self::htmlOut('selected') : self::htmlOut(''); ?> '
                 >
                     <?php self::actionLink('Login', 'LogIn', 'User', null, 'pure-menu-link') ?>
                 </li>
