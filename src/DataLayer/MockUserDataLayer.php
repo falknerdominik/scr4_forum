@@ -45,6 +45,6 @@ class MockUserDataLayer implements UserDataLayer {
     }
 
     public function addUser($username, $password) {
-        // nothing to do
+        // nothing to do in mock
     }
 }

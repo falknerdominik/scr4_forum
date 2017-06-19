@@ -37,17 +37,28 @@ class User extends Controller {
        } else {
            // register
            $username = $this->getParam(self::PARAM_USER_NAME);
+           $password = $this->getParam(self::PARAM_PASSWORD);
+
+           $errors = array();
+           // is password long enough
+           if(strlen($password) < 6) {
+               $errors[] = "Password needs to be atleast 6 characters long.";
+           }
 
            // is unique username
            $userRepository = DataLayerFactory::getUserDataLayer();
            if($userRepository->isUsernameTaken($username)) {
+               $errors[] = "Username already taken!";
+           }
+
+           if(sizeof($errors) > 0) {
                return $this->renderView('login', array(
-                   'errors' => array('Username already taken!')
+                   'username' => '',
+                   'errors' => $errors
                ));
            }
 
            // add and login
-           $password = $this->getParam(self::PARAM_PASSWORD);
            $userRepository->addUser($username, $password);
            return $this->redirect('Index', 'Home');
        }
