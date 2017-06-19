@@ -1,6 +1,7 @@
 <?php
 namespace Controllers;
 
+use BusinessLogic\AuthenticationManager;
 use DataLayer\DataLayerFactory;
 
 class Discussion extends Controller {
@@ -11,6 +12,7 @@ class Discussion extends Controller {
     const ITEMS_PER_PAGE = 5;
     const SHOWN_ADJACENT_PAGES = 5;
     const PARAM_DISCUSSION_ID = 'did';
+    const PARAM_DISCUSSION_NAME = 'dname';
 
     public function GET_Index() {
         $currentPage = 1;
@@ -27,7 +29,28 @@ class Discussion extends Controller {
     }
 
     public function POST_Create() {
-        echo "Create";
+        // check for param
+        if(!$this->hasParam(self::PARAM_DISCUSSION_NAME)) {
+            $this->redirect('Index', 'Home');
+        }
+
+        // check if logged in
+        if(!AuthenticationManager::isAuthenticated()) {
+            $this->redirect('Index', 'Home');
+        }
+
+        $user = AuthenticationManager::getAuthenticatedUser();
+
+        $newid = DataLayerFactory::getDiscussionDataLayer()->createDiscussion($this->getParam(self::PARAM_DISCUSSION_NAME), time(), $user->getId());
+
+        // check if we got an error from the db
+        if($newid === null) {
+            // log error .....
+            $this->redirect('Index', 'Discussion');
+        }
+
+        // everything went fine send user to discussion:
+        $this->redirect('Detail', 'Discussion', array('did' => $newid));
     }
 
     public function POST_Delete() {
