@@ -49,6 +49,10 @@ class MockDiscussionDataLayer implements DiscussionDataLayer {
         foreach ($this->__posts as $post) {
             $post->setCreator(DataLayerFactory::getUserDataLayer()->getUser($post->getCreator()));
         }
+
+        foreach ($this->__discussions as $discussion) {
+            $discussion->setCreator(DataLayerFactory::getUserDataLayer()->getUser($discussion->getCreator()));
+        }
     }
 
     public function getDiscussions() {
