@@ -1,7 +1,7 @@
 <?php self::renderView('partials/header', $model) ?>
 <main id="main">
     <div class="header">
-        <h1>Search</h1>
+        <h1><?php self::actionLink('Discussion', 'Index', 'Discussion', null, 'back-link'); ?> / Search</h1>
     </div>
 
     <div class="content">

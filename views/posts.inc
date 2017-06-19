@@ -1,7 +1,7 @@
 <?php self::renderView('partials/header', $model) ?>
 <main id="main">
     <div class="header">
-        <h1><?php self::actionLink('Discussion', 'Index', 'Discussion'); ?> / <?php self::htmlOut($model['discussion']->getName()); ?></h1>
+        <h1><?php self::actionLink('Discussion', 'Index', 'Discussion', null, 'back-link'); ?> / <?php self::htmlOut($model['discussion']->getName()); ?></h1>
     </div>
 
     <div class="content">
