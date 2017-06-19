@@ -47,6 +47,18 @@ a {
     .discussions {
         text-align: left;
     }
+
+    .discussion-top-bar-create {
+        text-align: left;
+    }
+
+    .discussion-top-bar-search {
+        text-align: right;
+    }
+}
+
+.discussion-top-bar {
+ text-align: center;
 }
 
 .discussion-grid:hover {
@@ -60,12 +72,6 @@ a {
 
 .discussion-grid {
     padding: 10px;
-}
-
-.discussion-header {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
 }
 
 /*
