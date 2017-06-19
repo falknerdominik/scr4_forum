@@ -23,7 +23,7 @@ class MockDiscussionDataLayer implements DiscussionDataLayer {
 
         $this->__posts = array(
             // Discussion 1
-            new Post(++$top_posts, 1,1, "2017-06-12", $lorem_ipsum),
+            new Post(++$top_posts, 1,1, "2017-06-12", $lorem_ipsum . " Test"),
             new Post(++$top_posts, 1,2, "2017-06-12", $lorem_ipsum),
             new Post(++$top_posts, 1,3, "2017-06-13", $lorem_ipsum),
             new Post(++$top_posts, 1,3, "2017-06-13", $lorem_ipsum),
@@ -45,6 +45,10 @@ class MockDiscussionDataLayer implements DiscussionDataLayer {
             new Post(++$top_posts, 2,4,  "2017-05-25", $lorem_ipsum),
             new Post(++$top_posts, 2,6,  "2017-05-25", $lorem_ipsum)
         );
+
+        foreach ($this->__posts as $post) {
+            $post->setCreator(DataLayerFactory::getUserDataLayer()->getUser($post->getCreator()));
+        }
     }
 
     public function getDiscussions() {
@@ -89,5 +93,21 @@ class MockDiscussionDataLayer implements DiscussionDataLayer {
     public function getDiscussionPage($page, $nrOfItemsPerPage) {
         $start = ($page - 1) * $nrOfItemsPerPage;
         return array_slice($this->__discussions, $start, $nrOfItemsPerPage);
+    }
+
+    public function getPostsForSearchCriteria($search) {
+        return array_filter($this->__posts, function($post) use ($search) {
+           return strpos($post->getText(), $search);
+        });
+    }
+
+    public function hasPost($id) {
+        return sizeof(array_filter($this->__posts, function($post) use($id) {
+            return $post->getId() == $id;
+        })) > 0;
+    }
+
+    public function deletePost($getId) {
+        // Do stuff
     }
 }

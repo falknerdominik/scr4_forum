@@ -62,11 +62,15 @@ a {
     padding: 10px;
 }
 
+.discussion-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 
 /*
  * Pagination
  */
-
 .pagination {
     display: flex;
     flex-direction: row;
@@ -93,4 +97,23 @@ a {
 .smiley-404 {
     margin-right: 1em;
     font-size: 180%;
+}
+
+/*
+ * details for post site
+ */
+.button-warning {
+    color: white;
+    border-radius: 4px;
+    background: rgb(223, 117, 20); /* this is an orange */
+}
+
+.button-xsmall {
+    font-size: 70%;
+}
+
+.post-title-bar {
+    margin-top: 2em;
+    padding-bottom: 1em;
+    border-bottom: 1px dashed #999;
 }

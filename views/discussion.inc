@@ -8,6 +8,10 @@
     <div class="content">
         <p></p>
         <!-- discussions grid -->
+        <section class="discussion-header">
+            <?php self::renderView('partials/createDiscussionForm', null); ?>
+            <?php self::renderView('partials/searchBox', null); ?>
+        </section>
         <?php if(sizeof($model['discussions']) > 0): ?>
         <section class="discussions">
             <?php self::renderView('partials/discussionOverviewRow', array(
