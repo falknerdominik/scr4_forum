@@ -10,6 +10,7 @@ class Discussion extends Controller {
 
     const ITEMS_PER_PAGE = 5;
     const SHOWN_ADJACENT_PAGES = 5;
+    const PARAM_DISCUSSION_ID = 'did';
 
     public function GET_Index() {
         $currentPage = 1;
@@ -41,6 +42,30 @@ class Discussion extends Controller {
         }
 
         return $this->redirect('Index', 'Home');
+    }
+
+    public function GET_Detail() {
+        $discussionDataLayer = DataLayerFactory::getDiscussionDataLayer();
+        $discussion = $discussionDataLayer->getDiscussionById($this->getParam(self::PARAM_DISCUSSION_ID));
+
+        // check if we got a discussion
+        if($discussion == null) {
+            // error send back to start page
+            return $this->renderView('discussion', array(
+                'discussions' => DataLayerFactory::getDiscussionDataLayer()->getDiscussionPage(1, self::ITEMS_PER_PAGE),
+                'currentPage' => 1,
+                'paginationArray' => DataLayerFactory::getDiscussionDataLayer()->getPaginationArray(self::ITEMS_PER_PAGE, 1, self::SHOWN_ADJACENT_PAGES),
+                'errors' => array('No discussion found!')
+            ));
+        }
+
+        $posts = $discussionDataLayer->getPostsForDiscussion($discussion->getId());
+
+        return $this->renderView('posts', array(
+            'discussion' => $discussion,
+            'posts' => $posts,
+            'term' => ''
+        ));
     }
 
     public function GET_Search() {

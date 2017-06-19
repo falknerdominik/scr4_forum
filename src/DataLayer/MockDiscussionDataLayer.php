@@ -60,8 +60,8 @@ class MockDiscussionDataLayer implements DiscussionDataLayer {
     }
 
     public function getPostsForDiscussion($discussionId) {
-        return array_filter($this->__discussions, function($discussion) use($discussionId){
-           return $discussion->getId() == $discussionId;
+        return array_filter($this->__posts, function($post) use($discussionId){
+           return $post->getDiscussionId() == $discussionId;
         });
     }
 
@@ -109,5 +109,12 @@ class MockDiscussionDataLayer implements DiscussionDataLayer {
 
     public function deletePost($getId) {
         // Do stuff
+    }
+
+    public function getDiscussionById($id) {
+        $arr =  array_filter($this->__discussions, function($discussion) use($id) {
+           return $discussion->getId() == $id;
+        });
+        return sizeof($arr) > 0 ? array_values($arr)[0] : null;
     }
 }

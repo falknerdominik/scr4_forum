@@ -1,7 +1,7 @@
 <?php foreach($model['discussions'] as $discussion): ?>
 <div class="pure-g <?php self::htmlOut($model['cssGridClass']); ?>">
     <div class='pure-u-1 pure-u-md-2-3 '>
-        <?php self::actionLink($discussion->getName(), 'Index', 'Discussion', array(
+        <?php self::actionLink($discussion->getName(), 'Detail', 'Discussion', array(
                 'did' => $discussion->getId()
             ));
         ?>
