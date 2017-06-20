@@ -123,7 +123,7 @@ class MockDiscussionDataLayer implements DiscussionDataLayer {
         return sizeof($arr) > 0 ? array_values($arr)[0] : null;
     }
 
-    private function getPostById($id) {
+    public function getPostById($id) {
         $arr =  array_filter($this->__posts, function($post) use($id) {
             return $post->getId() == $id;
         });
