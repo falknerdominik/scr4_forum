@@ -12,6 +12,18 @@ a {
     align-items: center;
 }
 
+/* flex body to be able to push footer to bottom */
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+/* make layout greedy to push footer to bottom */
+#layout {
+    flex: 1;
+}
+
 /*
  * Extra Menu Styling
  */
@@ -126,4 +138,24 @@ a {
     margin-top: 2em;
     padding-bottom: 1em;
     border-bottom: 1px dashed #999;
+}
+
+/*
+ * footer styling
+ */
+footer {
+    padding: 0.1em;
+    background-color: #191818;
+}
+
+footer p {
+    text-align: center;
+    color: white;
+}
+
+@media screen and (min-width: 48em) {
+    footer p {
+        text-align: right;
+        margin-right: 1em;
+    }
 }

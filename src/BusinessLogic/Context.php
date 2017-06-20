@@ -26,6 +26,7 @@ class Context {
         // TODO: referer
         self::$context = new \Domain\Context(
             AuthenticationManager::getAuthenticatedUser(),
+            PostManager::getLatestPost(),
            isset($_REQUEST['c']) ? $_REQUEST['c'] : null
         );
     }

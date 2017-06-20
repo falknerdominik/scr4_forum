@@ -8,3 +8,21 @@ document.onclick = function() {
     });
 
 }
+
+document.onreadystatechange = function() {
+    if(document.readyState == 'interactive') {
+        document.querySelectorAll('.button-warning').forEach(function(e) {
+            e.onclick = false;
+            e.addEventListener('click', function(event) {
+
+                if(!confirm("Are you sure?")) {
+                    event.preventDefault();
+                } else {
+                    // call clickhandler of button
+                    clickHandler.call(this, event);
+                }
+            });
+
+        });
+    }
+}

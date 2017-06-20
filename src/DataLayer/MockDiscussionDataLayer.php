@@ -133,4 +133,8 @@ class MockDiscussionDataLayer implements DiscussionDataLayer {
     public function deleteDiscussion($getId) {
         return true;
     }
+
+    public function getLatestPost() {
+        return array_values($this->__posts)[10];
+    }
 }
