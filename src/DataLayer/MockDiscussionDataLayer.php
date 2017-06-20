@@ -129,4 +129,8 @@ class MockDiscussionDataLayer implements DiscussionDataLayer {
         });
         return sizeof($arr) > 0 ? array_values($arr)[0] : null;
     }
+
+    public function deleteDiscussion($getId) {
+        return true;
+    }
 }

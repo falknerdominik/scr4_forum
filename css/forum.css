@@ -48,11 +48,11 @@ a {
         text-align: left;
     }
 
-    .discussion-top-bar-create {
+    .discussion-top-bar-left {
         text-align: left;
     }
 
-    .discussion-top-bar-search {
+    .discussion-top-bar-right {
         text-align: right;
     }
 }

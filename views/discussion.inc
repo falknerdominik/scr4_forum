@@ -9,10 +9,10 @@
         <p></p>
         <!-- discussions grid -->
         <section class="pure-g discussion-top-bar">
-            <div class="pure-u-1 pure-u-md-1-2 discussion-top-bar-create">
+            <div class="pure-u-1 pure-u-md-1-2 discussion-top-bar-left">
                 <?php self::renderView('partials/createDiscussionForm', null); ?>
             </div>
-            <div class="pure-u-1 pure-u-md-1-2 discussion-top-bar-search">
+            <div class="pure-u-1 pure-u-md-1-2 discussion-top-bar-right">
                 <?php self::renderView('partials/searchBox', null); ?>
             </div>
         </section>

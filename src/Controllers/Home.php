@@ -24,5 +24,4 @@ class Home extends Controller {
            'paginationArray' => DataLayerFactory::getDiscussionDataLayer()->getPaginationArray(self::ITEMS_PER_PAGE, $currentPage, self::SHOWN_ADJACENT_PAGES)
         ));
     }
-
 }

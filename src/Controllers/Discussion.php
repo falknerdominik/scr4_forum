@@ -53,26 +53,12 @@ class Discussion extends Controller {
         $this->redirect('Detail', 'Discussion', array('did' => $newid));
     }
 
-    public function POST_Delete() {
-        if(!$this->hasParam(self::PARAM_POST_ID) && !ctype_digit($this->getParam(self::PARAM_POST_ID))) {
-            return $this->redirect('Index', 'Home');
-        }
-
-        $dataLayer = DataLayerFactory::getDiscussionDataLayer();
-        if($dataLayer->hasPost($this->getParam(self::PARAM_POST_ID))) {
-            $dataLayer->deletePost($this->getParam(self::PARAM_POST_ID));
-            return $this->redirect('Index', 'Discussion');
-        }
-
-        return $this->redirect('Index', 'Home');
-    }
-
     public function GET_Detail() {
         $discussionDataLayer = DataLayerFactory::getDiscussionDataLayer();
         $discussion = $discussionDataLayer->getDiscussionById($this->getParam(self::PARAM_DISCUSSION_ID));
 
         // check if we got a discussion
-        if($discussion == null) {
+        if($discussion === null) {
             // error send back to start page
             return $this->renderView('discussion', array(
                 'discussions' => DataLayerFactory::getDiscussionDataLayer()->getDiscussionPage(1, self::ITEMS_PER_PAGE),
@@ -91,16 +77,37 @@ class Discussion extends Controller {
         ));
     }
 
-    public function GET_Search() {
-        $posts = array();
+    public function POST_Delete() {
+        $discussionDataLayer = DataLayerFactory::getDiscussionDataLayer();
+        $discussion = $discussionDataLayer->getDiscussionById($this->getParam(self::PARAM_DISCUSSION_ID));
 
-        if($this->hasParam(self::PARAM_SEARCH_TERM) && strlen($this->getParam(self::PARAM_SEARCH_TERM)) > 0) {
-            $posts = DataLayerFactory::getDiscussionDataLayer()->getPostsForSearchCriteria($this->getParam(self::PARAM_SEARCH_TERM));
+        $errors = array();
+
+        // error discussion not found -> redirect to
+        if($discussion === null) {
+            $errors[] = 'Discussion not found.';
         }
 
-        return $this->renderView('search', array(
-            'posts' => $posts,
-            'term' => $this->getParam(self::PARAM_SEARCH_TERM)
+
+        if( sizeof($errors) === 0
+            && AuthenticationManager::isAuthenticated()
+            && $discussion->getCreator()->getId() !== AuthenticationManager::getAuthenticatedUser()->getId())
+        {
+            $errors[] = 'Not authorized.';
+        }
+
+        // everything is fine
+        if(sizeof($errors) === 0 && $discussionDataLayer->deleteDiscussion($discussion->getId())) {
+            return $this->redirect('Index', 'Discussion');
+        } else {
+            $errors[] = "Couldn't delete discussion";
+        }
+
+        return $this->renderView('discussion', array(
+            'discussions' => DataLayerFactory::getDiscussionDataLayer()->getDiscussionPage(1, self::ITEMS_PER_PAGE),
+            'currentPage' => 1,
+            'paginationArray' => DataLayerFactory::getDiscussionDataLayer()->getPaginationArray(self::ITEMS_PER_PAGE, 1, self::SHOWN_ADJACENT_PAGES),
+            'errors' => $errors
         ));
     }
 }

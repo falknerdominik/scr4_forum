@@ -6,7 +6,7 @@
     </div>
     <div class='pure-u-md-1-5 '>
         <?php if(self::$context->isUserLoggedIn() && $post->getCreator()->getId() == self::$context->getUser()->getId()) {
-            self::beginActionForm('Delete', 'Discussion', null, 'post');
+            self::beginActionForm('Delete', 'Post', null, 'post');
         ?>
             <input type="hidden" name="pid" value="<?php self::htmlOut($post->getId()); ?>">
             <input class="pure-button button-xsmall button-warning" type="submit" value="delete">
