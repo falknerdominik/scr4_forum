@@ -2,7 +2,6 @@
 
 namespace Controllers;
 
-use BusinessLogic\Context;
 use MVC\MVC;
 use MVC\ViewRenderer;
 

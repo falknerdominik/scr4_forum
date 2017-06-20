@@ -8,8 +8,7 @@
 
 namespace BusinessLogic;
 
-// TODO: Better name?
-class Context {
+class ContextManager {
     private static $context = null;
 
     private function __construct() { }
@@ -23,7 +22,6 @@ class Context {
 
     private static function init_context() {
         // add current user
-        // TODO: referer
         self::$context = new \Domain\Context(
             AuthenticationManager::getAuthenticatedUser(),
             PostManager::getLatestPost(),
