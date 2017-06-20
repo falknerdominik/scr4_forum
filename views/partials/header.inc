@@ -56,8 +56,6 @@
                     <?php self::actionLink('Login', 'LogIn', 'User', null, 'pure-menu-link') ?>
                 </li>
                 <?php endif; ?>
-
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Contact</a></li>
             </ul>
         </div>
     </nav>

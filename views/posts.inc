@@ -31,7 +31,7 @@
             )); ?>
         </section>
         <?php if(self::$context->isUserLoggedIn()): ?>
-        <section>
+        <section class="create-post-form">
             <?php self::renderView('partials/createPostForm', array(
                     'discussion' => $model['discussion']
             )); ?>
