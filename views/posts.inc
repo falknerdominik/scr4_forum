@@ -8,7 +8,7 @@
         <p></p>
         <section class="pure-g discussion-top-bar">
             <div class="pure-u-1 pure-u-md-1-2 discussion-top-bar-left">
-                <?php if($model['discussion']->getCreator()->getId() == self::$context->getUser()->getId()): ?>
+                <?php if(self::$context->isUserLoggedIn() && $model['discussion']->getCreator()->getId() == self::$context->getUser()->getId()): ?>
                     <?php self::beginActionForm('Delete', 'Discussion', array( 'did' => $model['discussion']->getId() ), 'post', 'pure-form'); ?>
                         <fieldset>
                             <button type="submit" class="pure-button button-warning">Delete Discussion</button>
