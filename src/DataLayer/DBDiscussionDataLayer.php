@@ -2,9 +2,10 @@
 
 namespace DataLayer;
 
-class DBDiscussionDataLayer implements DiscussionDataLayer {
+class DBDiscussionDataLayer extends DBDataLayer implements DiscussionDataLayer {
 
-    public function __construct() {
+    public function __construct($server, $userName, $password, $database) {
+        parent::__construct($server, $userName, $password, $database);
     }
 
     public function getDiscussions()
