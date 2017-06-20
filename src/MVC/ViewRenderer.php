@@ -11,10 +11,7 @@ class ViewRenderer {
         require(MVC::getViewPath() . "/$view.inc");
     }
 
-    // Helper Methods for View
-
     private static function htmlOut($string) {
-        // TODO improve this late
         echo(htmlentities($string));
     }
 

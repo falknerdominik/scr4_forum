@@ -37,6 +37,7 @@ class Controller {
      */
     public final function redirecttoUrl($url) {
         header("Location: $url");
+        exit;
     }
 
     /**
