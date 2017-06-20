@@ -48,17 +48,33 @@ class Post extends Controller {
             if($id === 0) {
                 $errors[] = "Couldn't create post";
             } else {
-                return $this->redirect('Detail', 'Discussion', array(
+                return $this->redirect('Detail', 'Post', array(
                     'did' => $this->getParam(self::PARAM_DISCUSSION_ID),
                     'anchor' => "post_" . $id
                 ));
             }
         }
 
-        return $this->GET_Detail($errors);
+        $discussionDataLayer = DataLayerFactory::getDiscussionDataLayer();
+        $discussion = $discussionDataLayer->getDiscussionById($this->getParam(self::PARAM_DISCUSSION_ID));
+
+        // check if we got a discussion
+        if($discussion === null) {
+            $errors[] = 'Dicussion not found.';
+        }
+
+        $posts = DataLayerFactory::getDiscussionDataLayer()->getPostsForDiscussion($this->getParam(self::PARAM_DISCUSSION_ID));
+
+        return $this->renderView('posts', array(
+            'discussion' => $discussion,
+            'posts' => $posts,
+            'term' => '',
+            'text' => $this->hasParam(self::PARAM_TEXT) ? $this->getParam(self::PARAM_TEXT) : null,
+            'errors' => $errors
+        ));
     }
 
-    public function GET_Detail($errors = null) {
+    public function GET_Detail() {
         $discussionDataLayer = DataLayerFactory::getDiscussionDataLayer();
         $discussion = $discussionDataLayer->getDiscussionById($this->getParam(self::PARAM_DISCUSSION_ID));
 

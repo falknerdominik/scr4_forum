@@ -30,11 +30,13 @@
                 'cssTextClass' => 'post-text'
             )); ?>
         </section>
+        <?php if(self::$context->isUserLoggedIn()): ?>
         <section>
             <?php self::renderView('partials/createPostForm', array(
                     'discussion' => $model['discussion']
             )); ?>
         </section>
+        <?php endif; ?>
     </div>
 </main>
 <?php self::renderView('partials/footer', $model) ?>
