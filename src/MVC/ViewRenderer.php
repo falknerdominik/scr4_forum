@@ -31,6 +31,22 @@ LINK;
 
     }
 
+    private static function actionLinkWithAnchor($content, $action, $controller, $params = null, $anchor = null, $cssClass = null) {
+        $cc = $cssClass != null ? " class=\"$cssClass\"" : "";
+        $url = MVC::buildActionLink($action, $controller, $params);
+
+        // add anchor
+        if($anchor != null) {
+            $url .= '#' . rawurlencode($anchor);
+        }
+        $link = <<<LINK
+        <a href="$url"$cc>
+LINK;
+        echo($link);
+        self::htmlOut($content);
+        echo('</a>');
+    }
+
     private static function beginActionForm($action, $controller, $params = null, $method = 'get', $cssClass = null) {
         $cc = $cssClass != null ? " class=\"$cssClass\"" : "";
         $form = <<<FORM
