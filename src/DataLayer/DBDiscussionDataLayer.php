@@ -20,7 +20,7 @@ class DBDiscussionDataLayer implements DiscussionDataLayer {
         // TODO: Implement getPostsForCreator() method.
     }
 
-    public function createPost($discussionId, $creator, $creation_date, $text) {
+    public function createPost($discussionId, $creator_id, $creation_date, $text) {
         // TODO: Implement createPost() method.
     }
 }

@@ -11,7 +11,7 @@ interface DiscussionDataLayer {
 
     public function getPostsForDiscussion($discussionId);
     public function getPostsForCreator($creatorId);
-    public function createPost($discussionId, $creator, $creation_date, $text);
+    public function createPost($discussionId, $creator_id_id, $creation_date, $text);
 
     public function getPaginationArray($nrOfItemsPerPage, $currentPage, $wantedAdjacentPages);
 }

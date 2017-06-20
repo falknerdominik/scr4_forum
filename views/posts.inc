@@ -30,6 +30,11 @@
                 'cssTextClass' => 'post-text'
             )); ?>
         </section>
+        <section>
+            <?php self::renderView('partials/createPostForm', array(
+                    'discussion' => $model['discussion']
+            )); ?>
+        </section>
     </div>
 </main>
 <?php self::renderView('partials/footer', $model) ?>

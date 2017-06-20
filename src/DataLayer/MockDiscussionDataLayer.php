@@ -76,7 +76,7 @@ class MockDiscussionDataLayer implements DiscussionDataLayer {
         });
     }
 
-    public function createPost($discussionId, $creator, $creation_date, $text) {
+    public function createPost($discussionId, $creator_id, $creation_date, $text) {
         return rand();
     }
 
