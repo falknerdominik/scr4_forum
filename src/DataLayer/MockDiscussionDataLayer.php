@@ -42,8 +42,8 @@ class MockDiscussionDataLayer implements DiscussionDataLayer {
             new Post(++$top_posts, 2,9,  "2017-05-20", $lorem_ipsum),
 
             // Discussion 3
-            new Post(++$top_posts, 2,4,  "2017-05-25", $lorem_ipsum),
-            new Post(++$top_posts, 2,6,  "2017-05-25", $lorem_ipsum)
+            new Post(++$top_posts, 3,4,  "2017-05-25", $lorem_ipsum),
+            new Post(++$top_posts, 3,6,  "2017-05-25", $lorem_ipsum)
         );
 
         foreach ($this->__posts as $post) {
@@ -52,6 +52,7 @@ class MockDiscussionDataLayer implements DiscussionDataLayer {
 
         foreach ($this->__discussions as $discussion) {
             $discussion->setCreator(DataLayerFactory::getUserDataLayer()->getUser($discussion->getCreator()));
+            $discussion->setLastPost($this->getPostById($discussion->getLastPost()));
         }
     }
 
@@ -118,6 +119,13 @@ class MockDiscussionDataLayer implements DiscussionDataLayer {
     public function getDiscussionById($id) {
         $arr =  array_filter($this->__discussions, function($discussion) use($id) {
            return $discussion->getId() == $id;
+        });
+        return sizeof($arr) > 0 ? array_values($arr)[0] : null;
+    }
+
+    private function getPostById($id) {
+        $arr =  array_filter($this->__posts, function($post) use($id) {
+            return $post->getId() == $id;
         });
         return sizeof($arr) > 0 ? array_values($arr)[0] : null;
     }
