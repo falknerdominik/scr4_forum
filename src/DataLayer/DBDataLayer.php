@@ -2,7 +2,7 @@
 
 namespace DataLayer;
 
-protected class DBDataLayer {
+class DBDataLayer {
 
     private $server;
     private $userName;
@@ -16,7 +16,7 @@ protected class DBDataLayer {
         $this->database = $database;
     }
 
-    private function getConnection() {
+    protected function getConnection() {
         // \ -> because we want global namespace
         $con = new \mysqli($this->server, $this->userName, $this->password, $this->database);
         if(!$con) {
@@ -25,7 +25,7 @@ protected class DBDataLayer {
         return $con;
     }
 
-    private function executeQuery($connection, $query) {
+    protected function executeQuery($connection, $query) {
         $result = $connection->query($query);
         if(!$result) {
             die("Error in query '$query': " . $connection->error);
@@ -33,7 +33,7 @@ protected class DBDataLayer {
         return $result;
     }
 
-    private function executeStatement($connection, $query, $bindFunc) {
+    protected function executeStatement($connection, $query, $bindFunc) {
         $statement = $connection->prepare($query);
         if(!$statement) {
             die("Error in statement '$query'");

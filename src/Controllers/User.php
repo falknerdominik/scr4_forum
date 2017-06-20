@@ -59,7 +59,17 @@ class User extends Controller {
            }
 
            // add and login
-           $userRepository->addUser($username, $password);
+           $userId = $userRepository->addUser($username, $password);
+           if($userId == 0) {
+               $errors[] = "Couldn't save user in DB.";
+               // error case
+               $this->renderView('login', array(
+                   'username' => $this->getParam(self::PARAM_USER_NAME),
+                   'errors' => $errors
+               ));
+           }
+
+           AuthenticationManager::authenticate($username, $password);
            return $this->redirect('Index', 'Home');
        }
     }

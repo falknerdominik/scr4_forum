@@ -15,14 +15,14 @@ class DBUserDataLayer extends DBDataLayer implements UserDataLayer {
         $con = $this->getConnection();
         $stat = $this->executeStatement(
             $con,
-            'SELECT * FROM user WHERE id = ?',
+            'SELECT id, username FROM user WHERE id = ?',
             function($s) use ($id) {
                 $s->bind_param('i', $id);
             }
         );
 
         $id = null; $username = null;
-        $stat->bind_result($id, $username, $title, $author, $price);
+        $stat->bind_result($id, $username);
         while($stat->fetch()) {
             $user= new User($id, $username);
         }
@@ -33,11 +33,54 @@ class DBUserDataLayer extends DBDataLayer implements UserDataLayer {
     }
 
     public function getUserForUsernameAndPassword($username, $password) {
+        $user = null;
+        $con = $this->getConnection();
+        $stat = $this->executeStatement(
+            $con,
+            'SELECT * FROM user WHERE `username` LIKE ?',
+            function($s) use ($username) { $s->bind_param('s', $username); }
+        );
+
+        $id = null; $userName = null; $password_hash = null;
+        $stat->bind_result($id, $userName, $password_hash);
+        if($stat->fetch() && password_verify($password, $password_hash)) {
+            $user = new User($id, $userName);
+        }
+        if($stat->fetch()) {
+        }
+
+        $stat->close();
+        $con->close();
+        return $user;
     }
 
     public function isUsernameTaken($username) {
+        $user = null;
+        $con = $this->getConnection();
+        $stat = $this->executeStatement(
+            $con,
+            'SELECT * FROM user WHERE username LIKE ?',
+            function($s) use ($username) { $s->bind_param('s', $username); }
+        );
+
+        $stat->store_result();
+        $selectedRows = $stat->num_rows;
+
+        $stat->close();
+        $con->close();
+        return $selectedRows > 0;
     }
 
     public function addUser($username, $password) {
+        $con = $this->getConnection();
+        $stat = $this->executeStatement(
+            $con,
+            'INSERT INTO user(username, password_hash) VALUES(?, ?)',
+            function($s) use($username, $password) {
+                $s->bind_param('ss', $username, password_hash($password, PASSWORD_DEFAULT));
+            }
+        );
+        $userId = $stat->insert_id;
+        return $userId;
     }
 }

@@ -6,7 +6,7 @@
     </div>
 
     <div class="content">
-        <h2 class="content-subhead">Welcome to <b>the Forum</b></h2>
+        <h2 class="content-subhead">Welcome <?php if(self::$context->isUserLoggedIn()) self::htmlOut(self::$context->getUser()->getUsername() . ","); ?> to <b>the Forum</b></h2>
         <p>
             This is a forum site for everyone. You can read all the discussions and if you register you can even create new ones.
         </p>

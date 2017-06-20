@@ -16,7 +16,7 @@ USE `scr_forum`;
 CREATE TABLE `user` (
 	`id` int AUTO_INCREMENT PRIMARY KEY,
 	`username` VARCHAR(50) NOT NULL,
-	`password_hash` CHAR(60) NOT NULL
+	`password_hash` CHAR(255) NOT NULL
 );
 
 

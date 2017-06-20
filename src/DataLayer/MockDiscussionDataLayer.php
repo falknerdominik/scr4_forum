@@ -36,8 +36,8 @@ class MockDiscussionDataLayer implements DiscussionDataLayer {
 
             // Discussion 2
             new Post(++$top_posts, 2,9,  "2017-05-12", $lorem_ipsum),
-            new Post(++$top_posts, 2,11, "2017-05-18", $lorem_ipsum),
-            new Post(++$top_posts, 2,10, "2017-05-18", $lorem_ipsum),
+            new Post(++$top_posts, 2,8, "2017-05-18", $lorem_ipsum),
+            new Post(++$top_posts, 2,4, "2017-05-18", $lorem_ipsum),
             new Post(++$top_posts, 2,1,  "2017-05-19", $lorem_ipsum),
             new Post(++$top_posts, 2,9,  "2017-05-20", $lorem_ipsum),
 
