@@ -61,8 +61,7 @@ class DBDiscussionDataLayer extends DBDataLayer implements DiscussionDataLayer {
             $user = DataLayerFactory::getUserDataLayer()->getUser($creator_id);
 
             // fetch last post
-            // TODO: manually otherwise ...
-            $lastPost = null;//$this->getLatestPostForDiscussion($id);
+            $lastPost = null;
 
             // fetch last post
             $nrOfPosts = $this->getNumberOfPostsForDiscussion($id);

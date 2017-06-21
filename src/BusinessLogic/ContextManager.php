@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Dominik
- * Date: 6/10/2017
- * Time: 7:33 PM
- */
 
 namespace BusinessLogic;
 
