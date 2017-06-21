@@ -13,11 +13,11 @@ class UserManager {
     }
 
     public static function isUsernameTaken($username) {
-        self::$datalayer->isUsernameTaken($username);
+        return self::$datalayer->isUsernameTaken($username);
     }
 
     public static function addUser($username, $password) {
-        self::$datalayer->addUser($username, $password);
+        return self::$datalayer->addUser($username, $password);
     }
 
 }
