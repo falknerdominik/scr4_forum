@@ -9,6 +9,8 @@ class Post extends Controller {
     const PARAM_DISCUSSION_ID = 'did';
     const PARAM_TEXT = 'text';
     const PARAM_SEARCH_TERM = 'term';
+    const ITEMS_PER_PAGE = 10;
+    const SHOWN_ADJACENT_PAGES = 4;
 
     public function POST_Delete() {
         if(!$this->hasParam(self::PARAM_POST_ID) && !ctype_digit($this->getParam(self::PARAM_POST_ID))) {
@@ -42,6 +44,7 @@ class Post extends Controller {
             $id = DataLayerFactory::getDiscussionDataLayer()->createPost(
                 $this->getParam(self::PARAM_DISCUSSION_ID),
                 AuthenticationManager::getAuthenticatedUser()->getId(),
+                time(),
                 $this->getParam(self::PARAM_TEXT)
             );
 

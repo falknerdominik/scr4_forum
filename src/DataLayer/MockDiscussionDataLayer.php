@@ -112,7 +112,7 @@ class MockDiscussionDataLayer implements DiscussionDataLayer {
         })) > 0;
     }
 
-    public function deletePost($getId) {
+    public function deletePost($id) {
         // Do stuff
     }
 
@@ -130,7 +130,7 @@ class MockDiscussionDataLayer implements DiscussionDataLayer {
         return sizeof($arr) > 0 ? array_values($arr)[0] : null;
     }
 
-    public function deleteDiscussion($getId) {
+    public function deleteDiscussion($id) {
         return true;
     }
 

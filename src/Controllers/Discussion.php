@@ -50,7 +50,7 @@ class Discussion extends Controller {
         }
 
         // everything went fine send user to discussion:
-        $this->redirect('Detail', 'Discussion', array('did' => $newid));
+        $this->redirect('Detail', 'Post', array('did' => $newid));
     }
 
     public function POST_Delete() {

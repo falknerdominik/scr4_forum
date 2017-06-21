@@ -24,11 +24,17 @@
             </div>
         </section>
         <section>
-            <?php self::renderView('partials/postOverviewRow', array(
-                'posts' => $model['posts'],
-                'cssTitleBarClass' => 'post-title-bar',
-                'cssTextClass' => 'post-text'
-            )); ?>
+            <?php if(sizeof($model['posts']) > 0): ?>
+                <?php self::renderView('partials/postOverviewRow', array(
+                    'posts' => $model['posts'],
+                    'cssTitleBarClass' => 'post-title-bar',
+                    'cssTextClass' => 'post-text'
+                )); ?>
+            <?php else: ?>
+                <?php self::renderView('partials/404', array(
+                    'message' => 'No posts found... yet.'
+                )); ?>
+            <?php endif; ?>
         </section>
         <?php if(self::$context->isUserLoggedIn()): ?>
         <section class="create-post-form">

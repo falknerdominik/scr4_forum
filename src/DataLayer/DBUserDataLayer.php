@@ -23,7 +23,7 @@ class DBUserDataLayer extends DBDataLayer implements UserDataLayer {
 
         $id = null; $username = null;
         $stat->bind_result($id, $username);
-        while($stat->fetch()) {
+        if($stat->fetch()) {
             $user= new User($id, $username);
         }
 
@@ -81,6 +81,8 @@ class DBUserDataLayer extends DBDataLayer implements UserDataLayer {
             }
         );
         $userId = $stat->insert_id;
+        $stat->close();
+        $con->close();
         return $userId;
     }
 }

@@ -16,7 +16,6 @@ final class DataLayerFactory {
     }
 
     public static function getDiscussionDataLayer() {
-        //TODO switch to another implementation here in the future
-        return new MockDiscussionDataLayer();
+        return new DBDiscussionDataLayer(self::SERVER, self::USER, self::PASSWORD, self::DATABASE);
     }
 }

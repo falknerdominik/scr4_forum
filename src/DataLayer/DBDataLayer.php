@@ -3,7 +3,6 @@
 namespace DataLayer;
 
 class DBDataLayer {
-
     private $server;
     private $userName;
     private $password;
