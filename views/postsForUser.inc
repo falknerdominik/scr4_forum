@@ -1,25 +1,25 @@
-<?PHP SELF::RENDERvIEW('PARTIALS/HEADER', $MODEL) ?>
-<MAIN ID="MAIN">
-    <DIV CLASS="HEADER">
-        <H1><?PHP SELF::ACTIONlINK('pROFILE', 'iNDEX', 'dISCUSSION', NULL, 'BACK-LINK'); ?> / yOUR pOSTS</H1>
-    </DIV>
+<?php self::renderView('partials/header', $model) ?>
+<main id="main">
+    <div class="header">
+        <h1><?php self::actionLink('Profile', 'Index', 'Discussion', null, 'back-link'); ?> / Your Posts</h1>
+    </div>
 
-    <DIV CLASS="CONTENT">
-        <P></P>
-        <?PHP IF(SIZEOF($MODEL['POSTS']) > 0): ?>
-            <SECTION>
-                <?PHP SELF::RENDERvIEW('PARTIALS/POSToVERVIEWrOW', ARRAY(
-                    'POSTS' => $MODEL['POSTS'],
-                    'CSStITLEbARcLASS' => 'POST-TITLE-BAR',
-                    'CSStEXTcLASS' => 'POST-TEXT'
+    <div class="content">
+        <p></p>
+        <?php if(sizeof($model['posts']) > 0): ?>
+            <section>
+                <?php self::renderView('partials/postOverviewRow', array(
+                    'posts' => $model['posts'],
+                    'cssTitleBarClass' => 'post-title-bar',
+                    'cssTextClass' => 'post-text'
                 )); ?>
-            </SECTION>
+            </section>
 
-        <?PHP ELSE: ?>
-            <?PHP SELF::RENDERvIEW('PARTIALS/404', ARRAY(
-               'MESSAGE' => 'nO POSTS FOUND.'
+        <?php else: ?>
+            <?php self::renderView('partials/404', array(
+                'message' => 'No posts found.'
             )); ?>
-        <?PHP ENDIF; ?>
-    </DIV>
-</MAIN>
-<?PHP SELF::RENDERvIEW('PARTIALS/FOOTER', $MODEL) ?>
+        <?php endif; ?>
+    </div>
+</main>
+<?php self::renderView('partials/footer', $model) ?>
