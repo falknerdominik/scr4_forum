@@ -42,7 +42,7 @@
                 <li
                     class='pure-menu-item <?php self::$context->isCurrentController("Profile") ? self::htmlOut('selected') : self::htmlOut(''); ?> '
                 >
-                    <?php self::actionLink('Your Profile', 'Profile', 'User', null, 'pure-menu-link') ?>
+                    <?php self::actionLink('Your Posts', 'PostsForUser', 'Post', null, 'pure-menu-link') ?>
                 </li>
                 <li>
                     <?php self::beginActionForm('LogOut', 'User', null, 'post', 'pure-form navbar-form'); ?>

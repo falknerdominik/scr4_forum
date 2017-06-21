@@ -153,7 +153,7 @@ SQL;
         $stat->bind_result($id, $discussion_id, $creator_id, $creation_date, $text);
         while($stat->fetch()) {
             // get discussion
-            $discussion = $this->getDiscussionById($discussion_id);
+            $discussion = $discussion_id;
 
             // get creator
             $creator = DataLayerFactory::getUserDataLayer()->getUser($creator_id);

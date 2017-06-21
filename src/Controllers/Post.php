@@ -83,9 +83,9 @@ class Post extends Controller {
         if($discussion === null) {
             // error send back to start page
             return $this->renderView('discussion', array(
-                'discussions' => DataLayerFactory::getDiscussionDataLayer()->getDiscussionPage(1, self::ITEMS_PER_PAGE),
+                'discussions' => DiscussionManager::getDiscussionPage(1, self::ITEMS_PER_PAGE),
                 'currentPage' => 1,
-                'paginationArray' => DataLayerFactory::getDiscussionDataLayer()->getPaginationArray(self::ITEMS_PER_PAGE, 1, self::SHOWN_ADJACENT_PAGES),
+                'paginationArray' => DiscussionManager::getPaginationArray(self::ITEMS_PER_PAGE, 1, self::SHOWN_ADJACENT_PAGES),
                 'errors' => array('No discussion found!')
             ));
         }
@@ -97,6 +97,18 @@ class Post extends Controller {
             'posts' => $posts,
             'term' => '',
             'errors' => isset($errors) ? $errors : null
+        ));
+    }
+
+    public function GET_PostsForUser() {
+        if(!AuthenticationManager::isAuthenticated()) {
+            return $this->renderView('Index', 'Home', array(
+               'errors' => array('Please log in to see your posts')
+            ));
+        }
+
+        return $this->renderView('postsForUser', array(
+           'posts' => PostManager::getPostsForCreator(AuthenticationManager::getAuthenticatedUser()->getId())
         ));
     }
 

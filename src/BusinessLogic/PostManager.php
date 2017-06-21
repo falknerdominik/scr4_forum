@@ -35,6 +35,10 @@ class PostManager {
         return self::$datalayer->getPostsForSearchCriteria($criteria);
     }
 
+    public static function getPostsForCreator($userId) {
+        return self::$datalayer->getPostsForCreator($userId);
+    }
+
 }
 
 PostManager::init();
