@@ -19,6 +19,13 @@ final class AuthenticationManager {
         return false;
     }
 
+    public static function isCurrentlyLoggedIn($userId) {
+        if(!self::isAuthenticated()) {
+            return false;
+        }
+        return self::getAuthenticatedUser()->getId() === $userId;
+    }
+
     public static function signOut() {
         Session::deleteValue(self::SESSION_USER_ID);
     }

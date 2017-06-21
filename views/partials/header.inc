@@ -11,14 +11,13 @@
     <!--  base responsive gird system CSS for purecss.io -->
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
 
+    <!-- custom css -->
+    <link rel="stylesheet" href="css/forum.css">
     <link rel="stylesheet" href="css/side-menu.css">
+    <link rel="stylesheet" href="css/notification.css">
 
 </head>
 <body>
-<!--TODO: Error handling-->
-<?php //if(isset($model['errors'])) {
-//    self::renderView('partials/errors', $model['errors']);
-//} ?>
 <section id="layout">
     <!-- Menu toggle -->
     <a href="#menu" id="menuLink" class="menu-link">
@@ -32,15 +31,36 @@
             <?php self::actionLink('Forum', 'Index', 'Home', null, 'pure-menu-heading'); ?>
 
             <ul class="pure-menu-list">
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Home</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">About</a></li>
-
-                <li class="pure-menu-item" class="menu-item-divided pure-menu-selected">
-                    <a href="#" class="pure-menu-link">Services</a>
+                <li
+                    class='pure-menu-item <?php self::$context->isCurrentController("Discussion") ? self::htmlOut('selected') : self::htmlOut(''); ?> '
+                >
+                    <?php self::actionLink('Discussions', 'Index', 'Discussion', null, 'pure-menu-link') ?>
                 </li>
 
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Contact</a></li>
+                <!-- check if user is logged in and generate Login / Profile link -->
+                <?php if(self::$context->isUserLoggedIn()): ?>
+                <li
+                    class='pure-menu-item <?php self::$context->isCurrentController("Profile") ? self::htmlOut('selected') : self::htmlOut(''); ?> '
+                >
+                    <?php self::actionLink('Your Profile', 'Profile', 'User', null, 'pure-menu-link') ?>
+                </li>
+                <li>
+                    <?php self::beginActionForm('LogOut', 'User', null, 'post', 'pure-form navbar-form'); ?>
+                    <button class="pure-button">Log out</button>
+                    <?php self::endactionForm(); ?>
+                </li>
+                <?php else: ?>
+                <li
+                    class='pure-menu-item <?php self::$context->isCurrentController("User") ? self::htmlOut('selected') : self::htmlOut(''); ?> '
+                >
+                    <?php self::actionLink('Login', 'LogIn', 'User', null, 'pure-menu-link') ?>
+                </li>
+                <?php endif; ?>
             </ul>
         </div>
     </nav>
 
+
+    <?php if(isset($model['errors'])) {
+        self::renderView('partials/errors', $model['errors']);
+    } ?>

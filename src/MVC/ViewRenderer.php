@@ -1,20 +1,17 @@
 <?php
 namespace MVC;
 
-use BusinessLogic\Context;
+use BusinessLogic\ContextManager;
 
 class ViewRenderer {
     public static $context;
 
     public static function renderView($view, $model) {
-        self::$context = Context::getInstance();
+        self::$context = ContextManager::getInstance();
         require(MVC::getViewPath() . "/$view.inc");
     }
 
-    // Helper Methods for View
-
     private static function htmlOut($string) {
-        // TODO improve this late
         echo(htmlentities($string));
     }
 
@@ -29,6 +26,22 @@ LINK;
         self::htmlOut($content);
         echo('</a>');
 
+    }
+
+    private static function actionLinkWithAnchor($content, $action, $controller, $params = null, $anchor = null, $cssClass = null) {
+        $cc = $cssClass != null ? " class=\"$cssClass\"" : "";
+        $url = MVC::buildActionLink($action, $controller, $params);
+
+        // add anchor
+        if($anchor != null) {
+            $url .= '#' . rawurlencode($anchor);
+        }
+        $link = <<<LINK
+        <a href="$url"$cc>
+LINK;
+        echo($link);
+        self::htmlOut($content);
+        echo('</a>');
     }
 
     private static function beginActionForm($action, $controller, $params = null, $method = 'get', $cssClass = null) {

@@ -2,7 +2,6 @@
 
 namespace Controllers;
 
-use BusinessLogic\Context;
 use MVC\MVC;
 use MVC\ViewRenderer;
 
@@ -37,6 +36,7 @@ class Controller {
      */
     public final function redirecttoUrl($url) {
         header("Location: $url");
+        exit;
     }
 
     /**

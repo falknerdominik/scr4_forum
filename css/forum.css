@@ -1,0 +1,168 @@
+/*
+ * General Styling
+ */
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* flex body to be able to push footer to bottom */
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+/* make layout greedy to push footer to bottom */
+#layout {
+    flex: 1;
+}
+
+/*
+ * Extra Menu Styling
+ */
+#menu .selected { background-color: #fff; }
+
+/* get rid of border */
+#layout #menu .pure-menu ul { border-top: none; }
+
+/*
+ * Extra form styling for inline navbar-forms (make buttons look like <li>
+ */
+.navbar-form button {
+    background-color: transparent;
+    color: #999;
+    width: 100%;
+    text-align: left;
+    padding: 0.6em 0 0.6em 0.6em;
+    border-radius: 0;
+}
+
+.navbar-form button:hover {
+    background-color: #333;
+}
+
+/*
+ * Styling of discussion page
+ */
+.discussions {
+    text-align: center;
+}
+
+@media screen and (min-width: 48em) {
+    .discussions {
+        text-align: left;
+    }
+
+    .discussion-top-bar-left {
+        text-align: left;
+    }
+
+    .discussion-top-bar-right {
+        text-align: right;
+    }
+}
+
+.discussion-top-bar {
+ text-align: center;
+}
+
+.discussion-grid:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.discussion-grid:not(:last-child) {
+    border-bottom: 1px solid lightgray;
+}
+
+.discussion-grid {
+    padding: 10px;
+}
+
+/*
+ * Pagination
+ */
+.pagination {
+    display: flex;
+    flex-direction: row;
+}
+
+.pagination li {
+    list-style-type: none;
+    background-color: darkslateblue;
+    border: 1px solid white;
+    padding: 0.3em;
+}
+
+.pagination li a {
+    color: white;
+}
+
+.error-404 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.smiley-404 {
+    margin-right: 1em;
+    font-size: 180%;
+}
+
+/*
+ * details for post site
+ */
+.back-link {
+    color: #1f8dd6;
+}
+
+.button-warning {
+    color: white;
+    border-radius: 4px;
+    background: rgb(223, 117, 20); /* this is an orange */
+}
+
+.button-xsmall {
+    font-size: 70%;
+}
+
+.post-title-bar {
+    margin-top: 2em;
+    padding-bottom: 1em;
+    border-bottom: 1px dashed #999;
+}
+.create-post-form {
+    margin-top: 2.5em;
+}
+
+.create-post-form form fieldset textarea {
+    resize: vertical;
+}
+
+/*
+ * footer styling
+ */
+footer {
+    padding: 0.1em;
+    background-color: #191818;
+}
+
+footer p {
+    text-align: center;
+    color: white;
+}
+
+@media screen and (min-width: 48em) {
+    footer p {
+        text-align: right;
+        margin-right: 1em;
+    }
+}
