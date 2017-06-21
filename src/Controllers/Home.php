@@ -2,6 +2,7 @@
 namespace Controllers;
 
 use \BusinessLogic\AuthenticationManager;
+use BusinessLogic\DiscussionManager;
 use DataLayer\DataLayerFactory;
 
 class Home extends Controller {
@@ -19,9 +20,9 @@ class Home extends Controller {
         /** @noinspection PhpVoidFunctionResultUsedInspection */
         return $this->renderView('home', array(
            'user' => AuthenticationManager::getAuthenticatedUser(),
-           'discussions' => DataLayerFactory::getDiscussionDataLayer()->getDiscussions(),
+           'discussions' => DiscussionManager::getDiscussions(),
            'currentPage' => $currentPage,
-           'paginationArray' => DataLayerFactory::getDiscussionDataLayer()->getPaginationArray(self::ITEMS_PER_PAGE, $currentPage, self::SHOWN_ADJACENT_PAGES)
+           'paginationArray' => DiscussionManager::getPaginationArray(self::ITEMS_PER_PAGE, $currentPage, self::SHOWN_ADJACENT_PAGES)
         ));
     }
 }

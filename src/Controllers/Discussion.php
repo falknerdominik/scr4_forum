@@ -2,6 +2,7 @@
 namespace Controllers;
 
 use BusinessLogic\AuthenticationManager;
+use BusinessLogic\DiscussionManager;
 use DataLayer\DataLayerFactory;
 
 class Discussion extends Controller {
@@ -22,9 +23,9 @@ class Discussion extends Controller {
 
         /** @noinspection PhpVoidFunctionResultUsedInspection */
         return $this->renderView('discussion', array(
-           'discussions' => DataLayerFactory::getDiscussionDataLayer()->getDiscussionPage($currentPage, self::ITEMS_PER_PAGE),
+           'discussions' => DiscussionManager::getDiscussionPage($currentPage, self::ITEMS_PER_PAGE),
            'currentPage' => $currentPage,
-           'paginationArray' => DataLayerFactory::getDiscussionDataLayer()->getPaginationArray(self::ITEMS_PER_PAGE, $currentPage, self::SHOWN_ADJACENT_PAGES)
+           'paginationArray' => DiscussionManager::getPaginationArray(self::ITEMS_PER_PAGE, $currentPage, self::SHOWN_ADJACENT_PAGES)
         ));
     }
 
@@ -41,7 +42,7 @@ class Discussion extends Controller {
 
         $user = AuthenticationManager::getAuthenticatedUser();
 
-        $newid = DataLayerFactory::getDiscussionDataLayer()->createDiscussion($this->getParam(self::PARAM_DISCUSSION_NAME), time(), $user->getId());
+        $newid = DiscussionManager::createDiscussion($this->getParam(self::PARAM_DISCUSSION_NAME), $user->getId());
 
         // check if we got an error from the db
         if($newid === null) {
@@ -54,8 +55,7 @@ class Discussion extends Controller {
     }
 
     public function POST_Delete() {
-        $discussionDataLayer = DataLayerFactory::getDiscussionDataLayer();
-        $discussion = $discussionDataLayer->getDiscussionById($this->getParam(self::PARAM_DISCUSSION_ID));
+        $discussion = DiscussionManager::getDiscussionById($this->getParam(self::PARAM_DISCUSSION_ID));
 
         $errors = array();
 
@@ -65,24 +65,21 @@ class Discussion extends Controller {
         }
 
 
-        if( sizeof($errors) === 0
-            && AuthenticationManager::isAuthenticated()
-            && $discussion->getCreator()->getId() !== AuthenticationManager::getAuthenticatedUser()->getId())
-        {
+        if( sizeof($errors) === 0 && !AuthenticationManager::isCurrentlyLoggedIn($discussion->getCreator()->getId())) {
             $errors[] = 'Not authorized.';
         }
 
         // everything is fine
-        if(sizeof($errors) === 0 && $discussionDataLayer->deleteDiscussion($discussion->getId())) {
+        if(sizeof($errors) === 0 && DiscussionManager::deleteDiscussion($discussion->getId())) {
             return $this->redirect('Index', 'Discussion');
         } else {
             $errors[] = "Couldn't delete discussion";
         }
 
         return $this->renderView('discussion', array(
-            'discussions' => DataLayerFactory::getDiscussionDataLayer()->getDiscussionPage(1, self::ITEMS_PER_PAGE),
+            'discussions' => DiscussionManager::getDiscussionPage(1, self::ITEMS_PER_PAGE),
             'currentPage' => 1,
-            'paginationArray' => DataLayerFactory::getDiscussionDataLayer()->getPaginationArray(self::ITEMS_PER_PAGE, 1, self::SHOWN_ADJACENT_PAGES),
+            'paginationArray' => DiscussionManager::getPaginationArray(self::ITEMS_PER_PAGE, 1, self::SHOWN_ADJACENT_PAGES),
             'errors' => $errors
         ));
     }

@@ -250,21 +250,6 @@ SQL;
         return true;
     }
 
-    public function getPaginationArray($nrOfItemsPerPage, $currentPage, $wantedAdjacentPages) {
-        // get all items within the range
-        $result = range(1, ceil(sizeof($this->getDiscussions()) / $nrOfItemsPerPage));
-
-        if (isset($currentPage, $wantedAdjacentPages) === true)
-        {
-            if (($adjacents = floor($wantedAdjacentPages / 2) * 2 + 1) >= 1)
-            {
-                $result = array_slice($result, max(0, min(count($result) - $adjacents, intval($currentPage) - ceil($adjacents / 2))), $adjacents);
-            }
-        }
-
-        return $result;
-    }
-
     private function getNumberOfPostsForDiscussion($id) {
         $sql = <<<'SQL'
         SELECT COUNT(*)

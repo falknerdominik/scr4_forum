@@ -2,6 +2,7 @@
 namespace Controllers;
 
 use \BusinessLogic\AuthenticationManager;
+use BusinessLogic\UserManager;
 use DataLayer\DataLayerFactory;
 
 class User extends Controller {
@@ -46,8 +47,7 @@ class User extends Controller {
            }
 
            // is unique username
-           $userRepository = DataLayerFactory::getUserDataLayer();
-           if($userRepository->isUsernameTaken($username)) {
+           if(UserManager::isUsernameTaken($username)) {
                $errors[] = "Username already taken!";
            }
 
@@ -59,7 +59,7 @@ class User extends Controller {
            }
 
            // add and login
-           $userId = $userRepository->addUser($username, $password);
+           $userId = UserManager::addUser($username, $password);
            if($userId == 0) {
                $errors[] = "Couldn't save user in DB.";
                // error case

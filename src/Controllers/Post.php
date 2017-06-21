@@ -2,6 +2,8 @@
 namespace Controllers;
 
 use BusinessLogic\AuthenticationManager;
+use BusinessLogic\DiscussionManager;
+use BusinessLogic\PostManager;
 use DataLayer\DataLayerFactory;
 
 class Post extends Controller {
@@ -10,16 +12,15 @@ class Post extends Controller {
     const PARAM_TEXT = 'text';
     const PARAM_SEARCH_TERM = 'term';
     const ITEMS_PER_PAGE = 10;
-    const SHOWN_ADJACENT_PAGES = 4;
+    const SHOWN_ADJACENT_PAGES = 5;
 
     public function POST_Delete() {
         if(!$this->hasParam(self::PARAM_POST_ID) && !ctype_digit($this->getParam(self::PARAM_POST_ID))) {
             return $this->redirect('Index', 'Home');
         }
 
-        $dataLayer = DataLayerFactory::getDiscussionDataLayer();
-        if($dataLayer->hasPost($this->getParam(self::PARAM_POST_ID))) {
-            $dataLayer->deletePost($this->getParam(self::PARAM_POST_ID));
+        if(PostManager::postExists($this->getParam(self::PARAM_POST_ID))) {
+            PostManager::deletePost($this->getParam(self::PARAM_POST_ID));
             return $this->redirect('Index', 'Discussion');
         }
 
@@ -41,10 +42,9 @@ class Post extends Controller {
         }
 
         if(sizeof($errors) === 0) {
-            $id = DataLayerFactory::getDiscussionDataLayer()->createPost(
+            $id = PostManager::createPost(
                 $this->getParam(self::PARAM_DISCUSSION_ID),
                 AuthenticationManager::getAuthenticatedUser()->getId(),
-                time(),
                 $this->getParam(self::PARAM_TEXT)
             );
 
@@ -58,15 +58,14 @@ class Post extends Controller {
             }
         }
 
-        $discussionDataLayer = DataLayerFactory::getDiscussionDataLayer();
-        $discussion = $discussionDataLayer->getDiscussionById($this->getParam(self::PARAM_DISCUSSION_ID));
+        $discussion = DiscussionManager::getDiscussionById($this->getParam(self::PARAM_DISCUSSION_ID));
 
         // check if we got a discussion
         if($discussion === null) {
             $errors[] = 'Dicussion not found.';
         }
 
-        $posts = DataLayerFactory::getDiscussionDataLayer()->getPostsForDiscussion($this->getParam(self::PARAM_DISCUSSION_ID));
+        $posts = PostManager::getPostsForDiscussion($this->getParam(self::PARAM_DISCUSSION_ID));
 
         return $this->renderView('posts', array(
             'discussion' => $discussion,
@@ -78,8 +77,7 @@ class Post extends Controller {
     }
 
     public function GET_Detail() {
-        $discussionDataLayer = DataLayerFactory::getDiscussionDataLayer();
-        $discussion = $discussionDataLayer->getDiscussionById($this->getParam(self::PARAM_DISCUSSION_ID));
+        $discussion = DiscussionManager::getDiscussionById($this->getParam(self::PARAM_DISCUSSION_ID));
 
         // check if we got a discussion
         if($discussion === null) {
@@ -92,7 +90,7 @@ class Post extends Controller {
             ));
         }
 
-        $posts = $discussionDataLayer->getPostsForDiscussion($discussion->getId());
+        $posts = PostManager::getPostsForDiscussion($discussion->getId());
 
         return $this->renderView('posts', array(
             'discussion' => $discussion,
@@ -106,7 +104,7 @@ class Post extends Controller {
         $posts = array();
 
         if($this->hasParam(self::PARAM_SEARCH_TERM) && strlen($this->getParam(self::PARAM_SEARCH_TERM)) > 0) {
-            $posts = DataLayerFactory::getDiscussionDataLayer()->getPostsForSearchCriteria($this->getParam(self::PARAM_SEARCH_TERM));
+            $posts = PostManager::getPostsForSearchCriteria($this->getParam(self::PARAM_SEARCH_TERM));
         }
 
         return $this->renderView('search', array(
@@ -114,5 +112,4 @@ class Post extends Controller {
             'term' => $this->getParam(self::PARAM_SEARCH_TERM)
         ));
     }
-
 }

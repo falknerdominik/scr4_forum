@@ -21,6 +21,4 @@ interface DiscussionDataLayer {
 
     public function deletePost($id);
     public function deleteDiscussion($id);
-
-    public function getPaginationArray($nrOfItemsPerPage, $currentPage, $wantedAdjacentPages);
 }
