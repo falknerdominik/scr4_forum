@@ -10,7 +10,7 @@ class Discussion extends Controller {
     const PARAM_POST_ID = 'pid';
     const PARAM_SEARCH_TERM = 'term';
 
-    const ITEMS_PER_PAGE = 5;
+    const ITEMS_PER_PAGE = 3;
     const SHOWN_ADJACENT_PAGES = 5;
     const PARAM_DISCUSSION_ID = 'did';
     const PARAM_DISCUSSION_NAME = 'dname';
