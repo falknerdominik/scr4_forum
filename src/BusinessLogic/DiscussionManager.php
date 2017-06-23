@@ -4,19 +4,13 @@ namespace BusinessLogic;
 use DataLayer\DataLayerFactory;
 
 class DiscussionManager {
-    static $datalayer = null;
-
-    public static function init() {
-        self::$datalayer = DataLayerFactory::getDiscussionDataLayer();
-    }
-
     /**
      * @param $page integer page to get
      * @param $nrOfItemsPerPage integer per page
      * @return array of discussions
      */
     public static function getDiscussionPage($page, $nrOfItemsPerPage) {
-        return self::$datalayer->getDiscussionPage($page, $nrOfItemsPerPage);
+        return DataLayerFactory::getDiscussionDataLayer()->getDiscussionPage($page, $nrOfItemsPerPage);
     }
 
     public static function getPaginationArray($nrOfItemsPerPage, $currentPage, $wantedAdjacentPages) {
@@ -35,21 +29,19 @@ class DiscussionManager {
     }
 
     public static function createDiscussion($name, $creatorId) {
-        return self::$datalayer->createDiscussion($name, date('Y-m-d', time()), $creatorId);
+        return DataLayerFactory::getDiscussionDataLayer()->createDiscussion($name, date('Y-m-d', time()), $creatorId);
     }
 
     public static function getDiscussionById($discussionId) {
-        return self::$datalayer->getDiscussionById($discussionId);
+        return DataLayerFactory::getDiscussionDataLayer()->getDiscussionById($discussionId);
     }
 
     public static function deleteDiscussion($discussionId) {
-        return self::$datalayer->deleteDiscussion($discussionId);
+        return DataLayerFactory::getDiscussionDataLayer()->deleteDiscussion($discussionId);
     }
 
     public static function getDiscussions() {
-        return self::$datalayer->getDiscussions();
+        return DataLayerFactory::getDiscussionDataLayer()->getDiscussions();
     }
 
 }
-
-DiscussionManager::init();
