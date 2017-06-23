@@ -6,20 +6,12 @@ use DataLayer\DataLayerFactory;
 
 class UserManager {
 
-    static $datalayer = null;
-
-    public static function init() {
-        self::$datalayer = DataLayerFactory::getUserDataLayer();
-    }
-
     public static function isUsernameTaken($username) {
-        return self::$datalayer->isUsernameTaken($username);
+        return DataLayerFactory::getUserDataLayer()->isUsernameTaken($username);
     }
 
     public static function addUser($username, $password) {
-        return self::$datalayer->addUser($username, $password);
+        return DataLayerFactory::getUserDataLayer()->addUser($username, $password);
     }
 
 }
-
-UserManager::init();
